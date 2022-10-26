@@ -44,7 +44,6 @@ bool MyString::insert(int start, const char* good)
 	int i;
 	for (i = 0; i < start; i++)
 		bruh[i] = array[i];
-	// cout <<"Chieu dai doan dau: " << i << endl;
 	int k = 0;
 	while (good[k] != '\0')
 	{
@@ -52,15 +51,86 @@ bool MyString::insert(int start, const char* good)
 		k++;
 	}
 	bruh[start + k] = '\0';
-	// cout << k << endl;
-
 	int j = i;
 	for (; j < size + k; j++,i++)
 		bruh[j + k] = array[i];
 	bruh[size + k + 1] = '\0';
-
-	// cout << bruh << endl;
 	size = size + k;
 	array = bruh;
 	return true;
+}
+bool MyString::erase(int start, int number)
+{
+	char* bruh = new char(100);
+	if (start + number > size)
+	{
+		for (int k = 0; k < start; k++)
+			bruh[k] = array[k];
+		array = bruh;
+		return true;
+	}
+	else {
+		if (start > size || start < 0)
+			return false;
+		int i;
+		for (i = 0; i < start; i++)
+			bruh[i] = array[i];
+		int j = i;
+		for (; j < size - number; j++)
+		{
+			bruh[j] = array[j + number];
+		}
+		bruh[j] = '\0';
+		size = j;
+		array = bruh;
+		return true;
+	}
+}
+bool MyString::replace(int start, int number, const char* good)
+{
+	if (start > size || start < 0)
+		return false;
+	char* bruh = new char(100);
+	int i;
+	for (i = 0; i < start; i++)
+		bruh[i] = array[i];
+	int k = 0;
+	while (good[k] != '\0')
+	{
+		bruh[start + k] = good[k];
+		k++;
+	}
+	int j = 0;
+	for (; j < size - number - start; j ++)
+	{
+		bruh[start + k + j] = array[start + number + j];
+	}
+	bruh[start + k + j + 1] = '\0';
+	size = start + k + j;
+	array = bruh;
+	return true;
+}
+bool MyString::find(int start, char* good) {
+	int len = 0;
+	while (good[len] != '\0')
+	{
+		len++;
+	}
+	if (start + len > size)
+		return false;
+	int k = 0;
+	for (int i = start; i < size; i++)
+	{
+		if (array[i] == good[k])
+		{
+			k++;
+			if (len == k)
+				return true;
+		}
+		else {
+			k = 0;
+			continue;
+		}
+	}
+	return false;
 }

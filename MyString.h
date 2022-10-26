@@ -17,6 +17,9 @@ public:
 	char* substring(int start, int number);
 	char* operator+(const MyString& tmp);
 	bool insert(int, const char*);
+	bool erase(int, int);
+	bool replace(int, int, const char*);
+	bool find(int, char*);
 	friend istream& operator>>(istream& in, MyString& temp);
 	friend ostream& operator<<(ostream& out, MyString temp);
 };
