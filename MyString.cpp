@@ -66,8 +66,6 @@ bool MyString::erase(int start, int number)
 	{
 		for (int k = 0; k < start; k++)
 			bruh[k] = array[k];
-		array = bruh;
-		return true;
 	}
 	else {
 		if (start > size || start < 0)
@@ -82,9 +80,9 @@ bool MyString::erase(int start, int number)
 		}
 		bruh[j] = '\0';
 		size = j;
+	}
 		array = bruh;
 		return true;
-	}
 }
 bool MyString::replace(int start, int number, const char* good)
 {
@@ -110,7 +108,7 @@ bool MyString::replace(int start, int number, const char* good)
 	array = bruh;
 	return true;
 }
-bool MyString::find(int start, char* good) {
+bool MyString::find(int start, const char* good) {
 	int len = 0;
 	while (good[len] != '\0')
 	{
