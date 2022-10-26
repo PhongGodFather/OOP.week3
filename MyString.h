@@ -19,7 +19,7 @@ public:
 	bool insert(int, const char*);
 	bool erase(int, int);
 	bool replace(int, int, const char*);
-	bool find(int, char*);
+	bool find(int, const char*);
 	friend istream& operator>>(istream& in, MyString& temp);
 	friend ostream& operator<<(ostream& out, MyString temp);
 };
